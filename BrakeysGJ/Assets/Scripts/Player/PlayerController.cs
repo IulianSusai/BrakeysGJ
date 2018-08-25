@@ -20,10 +20,23 @@ public class PlayerController : MonoBehaviour {
 	private int currentIndex = 0;
 	private CharacterBase currentCharacter;
 
+	private void Start() {
+		StartGame();
+	}
+
+	private void StartGame() {
+		currentCharacter = characters[currentIndex];
+	}
+
 	private void Update() {
+		CheckInput();
+	}
+
+	private void CheckInput() {
 		if (Input.GetKeyDown(GameManager.Instance.inputSettings.swapKey)) {
 			SwapCharacter();
 		}
+		currentCharacter.CheckMoveInput();
 	}
 
 	private void SwapCharacter() {

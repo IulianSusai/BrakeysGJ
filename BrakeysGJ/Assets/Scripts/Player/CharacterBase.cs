@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterBase : MonoBehaviour {
 	
-	public virtual void OnKeyPressed(KeyCode key) {	}
-	public virtual void OnPlayerDeath() { }
+	public virtual void CheckMoveInput() { }
+	public virtual void CheckActionInput() { }
 
 }
