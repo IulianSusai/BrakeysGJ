@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Torch : MonoBehaviour {
 
-	private bool active;
+	public bool isActive { private set; get; }
 
-	public void SetTorchActive(bool _active) {
-		active = _active;
+	private void Start() {
+		isActive = false;
+	}
+
+	public void ActivateTorch() {
+		isActive = true;
 	}
 
 }

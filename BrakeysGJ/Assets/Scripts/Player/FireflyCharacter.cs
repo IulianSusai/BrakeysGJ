@@ -94,6 +94,10 @@ public class FireflyCharacter : CharacterBase {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.CompareTag("Torch")) {
+			Torch t = collision.gameObject.GetComponent<Torch>();
+			if (!t.isActive) {
+				t.ActivateTorch();
+			}
 			StartCharge();
 		}
 	}

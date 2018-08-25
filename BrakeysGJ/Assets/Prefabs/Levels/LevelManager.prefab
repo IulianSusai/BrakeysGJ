@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4843093924184356}
   - component: {fileID: 212364618260471200}
   - component: {fileID: 61140963588982646}
+  - component: {fileID: 114833748423318738}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Torch
@@ -102,6 +103,7 @@ GameObject:
   - component: {fileID: 4332414406435196}
   - component: {fileID: 212279488746708784}
   - component: {fileID: 61093443406700086}
+  - component: {fileID: 114050013210640744}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Torch
@@ -119,6 +121,7 @@ GameObject:
   - component: {fileID: 4843189523373162}
   - component: {fileID: 212507791658656148}
   - component: {fileID: 61726878798239508}
+  - component: {fileID: 114639172054471424}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Torch
@@ -348,6 +351,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &114050013210640744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886848351936216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a1ce27da533c247829d5c26fb739b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114639172054471424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913911048076592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a1ce27da533c247829d5c26fb739b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114833748423318738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099723237018040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a1ce27da533c247829d5c26fb739b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212250125812300208
 SpriteRenderer:
   m_ObjectHideFlags: 1
