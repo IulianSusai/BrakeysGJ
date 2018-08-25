@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FireflyCharacter : CharacterBase {
 
-	private Rigidbody2D rb;
 	private bool isCharging;
 	private float currentCharge;
 	private float lerpStartTime;

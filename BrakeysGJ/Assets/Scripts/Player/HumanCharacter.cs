@@ -5,7 +5,6 @@ using UnityEngine;
 public class HumanCharacter : CharacterBase {
 
 	[SerializeField] private JumpTrigger jumpTrigger;
-	Rigidbody2D rb;
 
 	private void Start() {
 		rb = GetComponent<Rigidbody2D>();

@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-#endregion
+	#endregion
 
+	public PlayerState state;
+	[SerializeField] private CameraFollow cameraFollow;
 	[SerializeField] private List<CharacterBase> characters;
 	private int currentIndex = 0;
 	private CharacterBase currentCharacter;
@@ -26,10 +28,13 @@ public class PlayerController : MonoBehaviour {
 
 	private void StartGame() {
 		currentCharacter = characters[currentIndex];
+		cameraFollow.SetTarget(currentCharacter.transform);
 	}
 
 	private void Update() {
-		CheckInput();
+		if (state == PlayerState.Moving) {
+			CheckInput();
+		}
 	}
 
 	private void CheckInput() {
@@ -41,9 +46,16 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void SwapCharacter() {
+		currentCharacter.StopMoving();
 		currentIndex = (int)Mathf.Repeat(++currentIndex, characters.Count);
 		currentCharacter = characters[currentIndex];
-		Debug.Log(currentCharacter.name);
+		cameraFollow.SetTarget(currentCharacter.transform);
 	}
 
+}
+
+public enum PlayerState
+{
+	Idle,
+	Moving
 }
