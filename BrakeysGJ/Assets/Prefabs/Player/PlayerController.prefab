@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4376438583317652}
   - component: {fileID: 61537518095772264}
   - component: {fileID: 114938448202605294}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: JumpTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607908449708328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 0.3, y: 0.6, z: 1}
   m_Children:
   - {fileID: 4376438583317652}

@@ -10,25 +10,39 @@ public class PlayerController : MonoBehaviour {
 	private void Awake() {
 		if(Instance == null) {
 			Instance = this;
+			ActionsManager.Instance.onLevelStart += StartLevel;
+			ActionsManager.Instance.onLevelFinished += OnLevelFinished;
 		} else {
 			Destroy(gameObject);
 		}
 	}
-	#endregion
+#endregion
 
 	public PlayerState state;
 	[SerializeField] private CameraFollow cameraFollow;
 	[SerializeField] private List<CharacterBase> characters;
-	private int currentIndex = 0;
+	private int currentIndex = 1;
 	private CharacterBase currentCharacter;
-
-	private void Start() {
-		StartGame();
+	
+	//Iulian ToDo -> Use Actions when adding an intermediate layer between LevelFinish and LevelStart
+	public void StartLevel(Vector2 fireflyPos, Vector2 humanPos ) {
+		characters[0].transform.position = fireflyPos;
+		characters[1].transform.position = humanPos;
+		currentCharacter = characters[1];
+		cameraFollow.SnapToPos(currentCharacter.transform);
+		state = PlayerState.Moving;
+		//ActivateCharacters(true);
 	}
 
-	private void StartGame() {
-		currentCharacter = characters[currentIndex];
-		cameraFollow.SetTarget(currentCharacter.transform);
+	private void OnLevelFinished() {
+		//ActivateCharacters(false);
+		//state = PlayerState.Idle;
+	}
+
+	private void ActivateCharacters(bool _active) {
+		for(int i = 0; i < characters.Count; i++) { 
+			characters[i].gameObject.SetActive(_active);
+		}
 	}
 
 	private void Update() {

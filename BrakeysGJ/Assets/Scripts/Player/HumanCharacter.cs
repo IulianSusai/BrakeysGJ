@@ -42,10 +42,9 @@ public class HumanCharacter : CharacterBase {
 	#endregion
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		Debug.Log("here");
 		if (collision.CompareTag("Finish")) {
 			Debug.LogError("Level Finished");
+			ActionsManager.Instance.SendOnLevelFinished();
 		}
 	}
-
 }

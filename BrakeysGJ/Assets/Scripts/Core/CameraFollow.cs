@@ -25,6 +25,11 @@ public class CameraFollow : MonoBehaviour {
 		StartSwap();
 	}
 
+	public void SnapToPos(Transform tar) {
+		target = tar;
+		transform.position = new Vector3(tar.position.x, tar.position.y, transform.position.z);
+	}
+
 	private void Update() {
 		if (isMoving) {
 			MoveToTarget();
