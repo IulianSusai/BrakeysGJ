@@ -31,7 +31,6 @@ public class HumanCharacter : CharacterBase {
 	private void FixedUpdate() {
 		float moveMaxSpeed = GameManager.Instance.design.humanMaxSpeed;
 		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -moveMaxSpeed, moveMaxSpeed), rb.velocity.y);
-		Debug.Log(rb.velocity);
 	}
 
 	public override void CheckActionInput() {
@@ -42,5 +41,12 @@ public class HumanCharacter : CharacterBase {
 	}
 
 	#endregion
+
+	private void OnTriggerEnter2D(Collider2D collision) {
+		Debug.Log("here");
+		if (collision.CompareTag("Finish")) {
+			Debug.LogError("Level Finished");
+		}
+	}
 
 }
