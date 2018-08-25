@@ -37,11 +37,13 @@ public class PlayerController : MonoBehaviour {
 			SwapCharacter();
 		}
 		currentCharacter.CheckMoveInput();
+		currentCharacter.CheckActionInput();
 	}
 
 	private void SwapCharacter() {
-		currentIndex = (int)Mathf.Repeat(currentIndex++, characters.Count - 1);
+		currentIndex = (int)Mathf.Repeat(++currentIndex, characters.Count);
 		currentCharacter = characters[currentIndex];
+		Debug.Log(currentCharacter.name);
 	}
 
 }

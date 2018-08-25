@@ -29,6 +29,9 @@ public struct DesignSettings
 	public AnimationCurve fireflyChargeCurve;
 	public float unchargeTime;
 	public AnimationCurve fireflyUnchargeCurve;
+	public float humanMaxSpeed;
+	public float humanMoveForce;
+	public float humanJumpForce;
 
 }
 
@@ -36,6 +39,7 @@ public struct DesignSettings
 public class PlayerInputSettings
 {
 	public KeyCode swapKey;
+	public KeyCode actionKey;
 	public KeyCode moveLeft;
 	public KeyCode moveRight;
 	public KeyCode moveUp;

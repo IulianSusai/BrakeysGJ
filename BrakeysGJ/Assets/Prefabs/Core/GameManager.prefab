@@ -103,8 +103,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    humanMaxSpeed: 10
+    humanMoveForce: 50
+    humanJumpForce: 20
   inputSettings:
     swapKey: 305
+    actionKey: 32
     moveLeft: 276
     moveRight: 275
     moveUp: 273

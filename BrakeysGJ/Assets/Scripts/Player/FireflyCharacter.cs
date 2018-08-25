@@ -83,7 +83,6 @@ public class FireflyCharacter : CharacterBase {
 		float percentage = chargeTime / (isCharging ? GameManager.Instance.design.chargeTime : GameManager.Instance.design.unchargeTime);
 		AnimationCurve curve = isCharging ? GameManager.Instance.design.fireflyChargeCurve : GameManager.Instance.design.fireflyUnchargeCurve;
 		currentCharge = Mathf.Lerp(startCharge, endCharge, curve.Evaluate(percentage));
-		Debug.Log(currentCharge);
 		if(percentage >= 1.0f) {
 			isUpdatingCharge = false;
 			if (!isCharging) {
