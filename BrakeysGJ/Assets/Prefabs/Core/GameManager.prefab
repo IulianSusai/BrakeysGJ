@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   design:
     fireflyMoveSpeed: 7
+    fireflyLightIntensity: 40
     chargeTime: 5
     fireflyChargeCurve:
       serializedVersion: 2
@@ -106,6 +107,32 @@ MonoBehaviour:
     humanMaxSpeed: 10
     humanMoveForce: 50
     humanJumpForce: 20
+    lightIntensity: 70
+    torchLightTime: 3
+    torchLightCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   inputSettings:
     swapKey: 305
     actionKey: 32

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 public struct DesignSettings
 {
 	public float fireflyMoveSpeed;
+	public float fireflyLightIntensity;
 	public float chargeTime;
 	public AnimationCurve fireflyChargeCurve;
 	public float unchargeTime;
@@ -32,7 +33,9 @@ public struct DesignSettings
 	public float humanMaxSpeed;
 	public float humanMoveForce;
 	public float humanJumpForce;
-
+	public float lightIntensity;
+	public float torchLightTime;
+	public AnimationCurve torchLightCurve;
 }
 
 [Serializable]

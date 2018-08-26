@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireflyCharacter : CharacterBase {
 
+	[SerializeField] private Light pointLight;
 	private bool isCharging;
 	private float currentCharge;
 	private float lerpStartTime;
@@ -82,7 +83,8 @@ public class FireflyCharacter : CharacterBase {
 		float percentage = chargeTime / (isCharging ? GameManager.Instance.design.chargeTime : GameManager.Instance.design.unchargeTime);
 		AnimationCurve curve = isCharging ? GameManager.Instance.design.fireflyChargeCurve : GameManager.Instance.design.fireflyUnchargeCurve;
 		currentCharge = Mathf.Lerp(startCharge, endCharge, curve.Evaluate(percentage));
-		if(percentage >= 1.0f) {
+		pointLight.intensity = currentCharge * GameManager.Instance.design.fireflyLightIntensity;
+		if (percentage >= 1.0f) {
 			isUpdatingCharge = false;
 			if (!isCharging) {
 				Debug.LogError("PLAYER DEATH");
@@ -92,6 +94,7 @@ public class FireflyCharacter : CharacterBase {
 
 
 	private void OnTriggerEnter2D(Collider2D collision) {
+		Debug.Log(collision.tag);
 		if (collision.CompareTag("Torch")) {
 			Torch t = collision.gameObject.GetComponent<Torch>();
 			if (!t.isActive) {

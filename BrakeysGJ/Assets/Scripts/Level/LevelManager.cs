@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour {
 				Destroy(currentLevel);
 			}
 			currentLevelIndex = index;
-			currentLevel = Instantiate(levelsPrefabs[currentLevelIndex].levelPrefab, transform);
+			//currentLevel = Instantiate(levelsPrefabs[currentLevelIndex].levelPrefab, transform);
 			ActionsManager.Instance.SendOnLevelStart(levelsPrefabs[currentLevelIndex].fireflyPosition, levelsPrefabs[currentLevelIndex].humanPosition);
 		}
 		Debug.Log("here");
