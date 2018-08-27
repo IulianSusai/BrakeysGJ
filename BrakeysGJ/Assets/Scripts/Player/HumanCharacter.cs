@@ -13,6 +13,7 @@ public class HumanCharacter : CharacterBase {
 #region Movement
 
 	public override void CheckMoveInput() {
+		KeyCode up = GameManager.Instance.inputSettings.moveUp;
 		KeyCode left = GameManager.Instance.inputSettings.moveLeft;
 		KeyCode right = GameManager.Instance.inputSettings.moveRight;
 		float moveSpeed = GameManager.Instance.design.humanMoveForce;
@@ -24,7 +25,11 @@ public class HumanCharacter : CharacterBase {
 		if (Input.GetKey(left)) {
 			rb.AddForce(Vector2.left * moveSpeed);
 		}
-				
+
+		if (Input.GetKeyDown(up) && jumpTrigger.canJump) {
+			rb.AddForce(Vector2.up * GameManager.Instance.design.humanJumpForce, ForceMode2D.Impulse);
+		}
+
 	}
 
 	private void FixedUpdate() {
@@ -33,10 +38,7 @@ public class HumanCharacter : CharacterBase {
 	}
 
 	public override void CheckActionInput() {
-		KeyCode actionKey = GameManager.Instance.inputSettings.actionKey;
-		if(Input.GetKeyDown(actionKey) && jumpTrigger.canJump) {
-			rb.AddForce(Vector2.up * GameManager.Instance.design.humanJumpForce, ForceMode2D.Impulse);
-		}
+		KeyCode actionKey = GameManager.Instance.inputSettings.actionKey;		
 	}
 
 	#endregion

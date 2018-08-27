@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Torch
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX

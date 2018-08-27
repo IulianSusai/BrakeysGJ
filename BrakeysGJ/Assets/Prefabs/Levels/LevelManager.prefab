@@ -54,5 +54,5 @@ MonoBehaviour:
   levelsPrefabs:
   - levelPrefab: {fileID: 1607984238507268, guid: 4219e8cf6b8e9fa468a2ba676de95aa6,
       type: 2}
-    fireflyPosition: {x: 5, y: 5}
-    humanPosition: {x: 0, y: 3}
+    fireflyPosition: {x: 3, y: 8.5}
+    humanPosition: {x: 1, y: 7.5}
