@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Torch : MonoBehaviour {
 
+	[SerializeField] private GameObject fireAnim;
 	[SerializeField] private Light pointLight;
 	[SerializeField] private float maxIntensity;
 
@@ -23,6 +24,8 @@ public class Torch : MonoBehaviour {
 	public void ActivateTorch() {
 		isActive = true;
 		isLightingUp = true;
+		fireAnim.SetActive(true);
+
 		activateStartTime = Time.time;
 		startLightIntensity = 0f;
 		endLightIntensity = maxIntensity != 0f ? maxIntensity : GameManager.Instance.design.lightIntensity;
