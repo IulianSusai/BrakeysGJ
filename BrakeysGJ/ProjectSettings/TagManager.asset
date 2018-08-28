@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - Torch
   - MovingPlatform
+  - Enemy
   layers:
   - Default
   - TransparentFX
