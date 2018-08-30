@@ -19,6 +19,10 @@ public class UIManager : MonoBehaviour {
 	[SerializeField] private List<MenuPage> gamePages;
 	private MenuPage currentPage;
 
+	private void Start() {
+		OpenPage(MenuPages.InGamePage);
+	}
+
 	public void OpenPage( MenuPages pageType ) {
 		if(currentPage != null) {
 			currentPage.Hide();
@@ -39,6 +43,6 @@ public class UIManager : MonoBehaviour {
 
 public enum MenuPages
 {
-	MenuPage,
-	InGamePage
+	InGamePage,
+	MenuPage
 }

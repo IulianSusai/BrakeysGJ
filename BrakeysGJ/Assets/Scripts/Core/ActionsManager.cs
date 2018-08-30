@@ -22,6 +22,8 @@ public class ActionsManager {
 
 	public Action onLevelFinished;
 	public Action<Vector2, Vector2> onLevelStart;
+	public Action<Sprite, string> onTalkText;
+	public Action<ToughtState> onTalkStatusChanged;
 
 	public void SendOnLevelFinished() {
 		if(onLevelFinished != null) {
@@ -32,6 +34,18 @@ public class ActionsManager {
 	public void SendOnLevelStart(Vector2 fireflyPos, Vector2 humanPos) {
 		if(onLevelStart != null) {
 			onLevelStart(fireflyPos, humanPos);
+		}
+	}
+
+	public void SendOnTalkText(Sprite chSprite, string talkText) {
+		if(onTalkText != null) {
+			onTalkText(chSprite, talkText);
+		}
+	}
+
+	public void SendTalkStatusChanged(ToughtState state) {
+		if(onTalkStatusChanged != null) {
+			onTalkStatusChanged(state);
 		}
 	}
 

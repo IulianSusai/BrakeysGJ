@@ -19,6 +19,19 @@ public class GameManager : MonoBehaviour {
 
 	public DesignSettings design;
 	public PlayerInputSettings inputSettings;
+	public List<CharacterDialog> dialogs;
+
+	private int dialogIndex;
+	private int phraseIndex;
+
+
+
+}
+
+[Serializable] public struct CharacterDialog
+{
+	public Sprite characterSprite;
+	public List<string> phrases;
 }
 
 [Serializable]
