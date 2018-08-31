@@ -5,6 +5,7 @@ using UnityEngine;
 public class HumanCharacter : CharacterBase {
 
 	[SerializeField] private JumpTrigger jumpTrigger;
+	private Vector2 spawnPosition;
 
 	private void Start() {
 		rb = GetComponent<Rigidbody2D>();
@@ -47,6 +48,11 @@ public class HumanCharacter : CharacterBase {
 		if (collision.CompareTag("Finish")) {
 			Debug.LogError("Level Finished");
 			ActionsManager.Instance.SendOnLevelFinished();
+		} else if (collision.CompareTag("Checkpoint")) {
+			spawnPosition = collision.transform.position;
+		} else if (collision.CompareTag("Enemy")) {
+			rb.velocity = Vector2.zero;
+			transform.position = spawnPosition;
 		}
 	}
 }

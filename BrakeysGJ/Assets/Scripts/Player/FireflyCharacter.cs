@@ -12,6 +12,7 @@ public class FireflyCharacter : CharacterBase {
 	private bool isUpdatingCharge;
 	private float startCharge;
 	private float endCharge;
+	private Vector2 spawnPosition;
 
 	private void Start() {
 		rb = GetComponent<Rigidbody2D>();
@@ -87,7 +88,8 @@ public class FireflyCharacter : CharacterBase {
 		if (percentage >= 1.0f) {
 			isUpdatingCharge = false;
 			if (!isCharging) {
-				Debug.LogError("PLAYER DEATH");
+				gameObject.SetActive(false);
+				Invoke("OnFireflyDie", 0.3f);
 			}
 		}
 	}
@@ -96,6 +98,7 @@ public class FireflyCharacter : CharacterBase {
 	private void OnTriggerEnter2D(Collider2D collision) {
 		Debug.Log(collision.tag);
 		if (collision.CompareTag("Torch")) {
+			spawnPosition = collision.gameObject.transform.position;
 			Torch t = collision.gameObject.GetComponent<Torch>();
 			if (!t.isActive) {
 				t.ActivateTorch();
@@ -108,6 +111,11 @@ public class FireflyCharacter : CharacterBase {
 		if (collision.CompareTag("Torch")) {
 			StopCharge();
 		}
+	}
+
+	private void OnFireflyDie() {
+		gameObject.SetActive(true);
+		transform.position = spawnPosition;
 	}
 
 }

@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour {
 	
 	//Iulian ToDo -> Use Actions when adding an intermediate layer between LevelFinish and LevelStart
 	public void StartLevel(Vector2 fireflyPos, Vector2 humanPos ) {
-		characters[0].transform.position = fireflyPos;
 		characters[1].transform.position = humanPos;
 		currentCharacter = characters[1];
 		cameraFollow.SnapToPos(currentCharacter.transform);

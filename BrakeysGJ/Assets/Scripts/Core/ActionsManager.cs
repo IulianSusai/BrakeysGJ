@@ -24,6 +24,7 @@ public class ActionsManager {
 	public Action<Vector2, Vector2> onLevelStart;
 	public Action<Sprite, string> onTalkText;
 	public Action<ToughtState> onTalkStatusChanged;
+	public Action<bool> onTimeWaitTrigger;
 
 	public void SendOnLevelFinished() {
 		if(onLevelFinished != null) {
@@ -46,6 +47,12 @@ public class ActionsManager {
 	public void SendTalkStatusChanged(ToughtState state) {
 		if(onTalkStatusChanged != null) {
 			onTalkStatusChanged(state);
+		}
+	}
+
+	public void SendOnTimeWaitTriger(bool enter) {
+		if(onTimeWaitTrigger != null) {
+			onTimeWaitTrigger(enter);
 		}
 	}
 
