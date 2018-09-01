@@ -26,12 +26,17 @@ public class TimeItem : MonoBehaviour {
 		if (countTime) {
 			currentTime += Time.deltaTime;	
 			if(currentTime >= secondsToWait) {
-				Debug.Log("Drop Item");
 				rb.isKinematic = false;
 				col.isTrigger = false;
 				countTime = false;
 				ActionsManager.Instance.onTimeWaitTrigger -= OnTimeWaitTrigger;
 			}
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.collider.CompareTag("Player")) {
+			Destroy(gameObject);
 		}
 	}
 

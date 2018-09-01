@@ -18,23 +18,37 @@ public class ActionsManager {
 	}
 
 	private ActionsManager() { }
-#endregion
+	#endregion
 
-	public Action onLevelFinished;
-	public Action<Vector2, Vector2> onLevelStart;
+	public Action onGameStart;
+	public Action onGameEnd;
 	public Action<Sprite, string> onTalkText;
 	public Action<ToughtState> onTalkStatusChanged;
 	public Action<bool> onTimeWaitTrigger;
+	public Action onPlayerDeath;
+	public Action onFinish;
 
-	public void SendOnLevelFinished() {
-		if(onLevelFinished != null) {
-			onLevelFinished();
+	public void SendOnFinish() {
+		if(onFinish!= null) {
+			onFinish();
 		}
 	}
 
-	public void SendOnLevelStart(Vector2 fireflyPos, Vector2 humanPos) {
-		if(onLevelStart != null) {
-			onLevelStart(fireflyPos, humanPos);
+	public void SendOnPlayerDeath() {
+		if(onPlayerDeath != null) {
+			onPlayerDeath();
+		}
+	}
+
+	public void SendOnGameStart() {
+		if(onGameStart != null) {
+			onGameStart();
+		}
+	}
+
+	public void SendOnGameEnd() {
+		if(onGameEnd != null) {
+			onGameEnd();
 		}
 	}
 
@@ -54,6 +68,15 @@ public class ActionsManager {
 		if(onTimeWaitTrigger != null) {
 			onTimeWaitTrigger(enter);
 		}
+	}
+
+	public void ClearReferences() {
+		onGameEnd = null;
+		onGameStart = null;
+		onPlayerDeath = null;
+		onTalkText = null;
+		onTalkStatusChanged = null;
+		onTimeWaitTrigger = null;
 	}
 
 }

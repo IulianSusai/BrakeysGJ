@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HumanCharacter : CharacterBase {
 
@@ -14,7 +15,7 @@ public class HumanCharacter : CharacterBase {
 #region Movement
 
 	public override void CheckMoveInput() {
-		KeyCode up = GameManager.Instance.inputSettings.moveUp;
+		KeyCode up = GameManager.Instance.inputSettings.actionKey;
 		KeyCode left = GameManager.Instance.inputSettings.moveLeft;
 		KeyCode right = GameManager.Instance.inputSettings.moveRight;
 		float moveSpeed = GameManager.Instance.design.humanMoveForce;
@@ -45,14 +46,19 @@ public class HumanCharacter : CharacterBase {
 	#endregion
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.CompareTag("Finish")) {
-			Debug.LogError("Level Finished");
-			ActionsManager.Instance.SendOnLevelFinished();
-		} else if (collision.CompareTag("Checkpoint")) {
+		if (collision.CompareTag("Checkpoint")) {
 			spawnPosition = collision.transform.position;
 		} else if (collision.CompareTag("Enemy")) {
+			ActionsManager.Instance.SendOnPlayerDeath();
 			rb.velocity = Vector2.zero;
 			transform.position = spawnPosition;
+		} else if (collision.CompareTag("Key")) {
+			Destroy(collision.gameObject);
+			PlayerController.Instance.hasKey = true;
+		} else if (collision.CompareTag("EndArea") && PlayerController.Instance.hasKey) {
+			ActionsManager.Instance.SendOnGameEnd();
+		} else if (collision.CompareTag("Finish") && PlayerController.Instance.hasKey) {
+			ActionsManager.Instance.SendOnFinish();
 		}
 	}
 }

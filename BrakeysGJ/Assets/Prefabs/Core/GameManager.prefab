@@ -54,7 +54,7 @@ MonoBehaviour:
   design:
     fireflyMoveSpeed: 7
     fireflyLightIntensity: 50
-    chargeTime: 5
+    chargeTime: 2
     fireflyChargeCurve:
       serializedVersion: 2
       m_Curve:
@@ -79,7 +79,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    unchargeTime: 10
+    unchargeTime: 5
     fireflyUnchargeCurve:
       serializedVersion: 2
       m_Curve:
@@ -140,3 +140,25 @@ MonoBehaviour:
     moveRight: 275
     moveUp: 273
     moveDown: 274
+  startDialog:
+  - Hello there! Are you up for another game jam?
+  - Let me tell you how to play. Use the arrow keys to move and Space to jump.
+  - You would want to use me to light up your way! Move me from torch to torch
+  - Use RIGHT CONTROL key to change between me and you. And move me with the Arrow
+    Keys.
+  - Ohh... I almost forgot, I have to recharge from time to time so is best to keep
+    me near a torch!
+  - 'I know it''s dark, but it''s ok you know this place! '
+  - Let's get going!
+  endDialog:
+  - Yeeey!!! You've reached the final... You did it!
+  - That was really fun. I hope you liked it too!
+  - That is the exit from here... I know you are confused with what is this place.
+  - You will come here, many more times from now on... This place... This is where
+    your thoughts are!
+  - But I will be here and help you light up the darkest corners of your thoughts,
+    I am after all....
+  - Motivation, a dim light that keeps you going!
+  - Thanks for hanging with my thoughts for a while.
+  - 'See you again, keep your head up! Bye!! '
+  talkerSprite: {fileID: 21300000, guid: be89fd8b103eda4409513aed48ae6a3c, type: 3}

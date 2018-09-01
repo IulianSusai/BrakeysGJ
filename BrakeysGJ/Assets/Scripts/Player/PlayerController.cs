@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -10,8 +11,9 @@ public class PlayerController : MonoBehaviour {
 	private void Awake() {
 		if(Instance == null) {
 			Instance = this;
-			ActionsManager.Instance.onLevelStart += StartLevel;
-			ActionsManager.Instance.onLevelFinished += OnLevelFinished;
+			ActionsManager.Instance.onGameStart += OnGameStart;
+			ActionsManager.Instance.onGameEnd += OnGameEnd;
+			ActionsManager.Instance.onTalkStatusChanged += OnTalkStatusChanged;
 		} else {
 			Destroy(gameObject);
 		}
@@ -21,23 +23,31 @@ public class PlayerController : MonoBehaviour {
 	public PlayerState state;
 	[SerializeField] private CameraFollow cameraFollow;
 	[SerializeField] private List<CharacterBase> characters;
+	[SerializeField] private Vector2 fireflyEndPos;
+
 	private int currentIndex = 1;
 	private CharacterBase currentCharacter;
-	
-	//Iulian ToDo -> Use Actions when adding an intermediate layer between LevelFinish and LevelStart
-	public void StartLevel(Vector2 fireflyPos, Vector2 humanPos ) {
-		characters[1].transform.position = humanPos;
+	public bool hasKey;
+
+
+	private void OnTalkStatusChanged(ToughtState tstate) {
+		state = tstate == ToughtState.End ? PlayerState.Moving : PlayerState.Idle;
+	}
+
+	public void OnGameStart() {
+		hasKey = false;
+		characters[0].gameObject.transform.position = new Vector2(-0.5f, 9.5f);
+		characters[1].gameObject.transform.position = new Vector2(1f, 7.5f);
 		currentCharacter = characters[1];
 		cameraFollow.SnapToPos(currentCharacter.transform);
-		state = PlayerState.Moving;
-		//ActivateCharacters(true);
+		state = PlayerState.Idle;
 	}
 
-	private void OnLevelFinished() {
-		//ActivateCharacters(false);
-		//state = PlayerState.Idle;
+	public void OnGameEnd() {
+		characters[0].gameObject.transform.position = fireflyEndPos;
 	}
 
+	
 	private void ActivateCharacters(bool _active) {
 		for(int i = 0; i < characters.Count; i++) { 
 			characters[i].gameObject.SetActive(_active);
@@ -47,6 +57,12 @@ public class PlayerController : MonoBehaviour {
 	private void Update() {
 		if (state == PlayerState.Moving) {
 			CheckInput();
+		}
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			ActionsManager.Instance.ClearReferences();
+			SceneManager.LoadScene(0);
+		} else if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit();
 		}
 	}
 

@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour {
 	private void Awake() {
 		if(Instance == null) {
 			Instance = this;
+			ActionsManager.Instance.onGameStart += OnGameStart;
+			ActionsManager.Instance.onGameEnd += OnGameEnded;
+#if UNITY_STANDALONE
+			Cursor.visible = false;
+#endif
 		} else {
 			Destroy(gameObject);
 		}
@@ -19,19 +24,59 @@ public class GameManager : MonoBehaviour {
 
 	public DesignSettings design;
 	public PlayerInputSettings inputSettings;
-	public List<CharacterDialog> dialogs;
 
-	private int dialogIndex;
-	private int phraseIndex;
+	[SerializeField] private List<string> startDialog;
+	[SerializeField] private List<string> endDialog;
+	[SerializeField] private Sprite talkerSprite;
+	private int currentIndex;
+	private GameState state;
+
+	private void Start() {
+		state = GameState.Ui;
+	}
+
+	private void OnGameStart() {
+		PlayerController.Instance.state = PlayerState.Idle;
+		state = GameState.Start;
+		currentIndex = 0;
+		ActionsManager.Instance.SendTalkStatusChanged(ToughtState.Start);
+		ActionsManager.Instance.SendOnTalkText(talkerSprite, startDialog[currentIndex]);
+		currentIndex++;
+	}
+
+	private void OnGameEnded() {
+		PlayerController.Instance.state = PlayerState.Idle;
+		state = GameState.End;
+		currentIndex = 0;
+		ActionsManager.Instance.SendTalkStatusChanged(ToughtState.Start);
+		ActionsManager.Instance.SendOnTalkText(talkerSprite, endDialog[currentIndex]);
+		currentIndex++;
+	}
 
 
-
-}
-
-[Serializable] public struct CharacterDialog
-{
-	public Sprite characterSprite;
-	public List<string> phrases;
+	private void Update() {
+		KeyCode actionKey = inputSettings.actionKey;
+		if (Input.GetKeyDown(actionKey)) {
+			if(state == GameState.Start) {
+				if(currentIndex == startDialog.Count) {
+					ActionsManager.Instance.SendTalkStatusChanged(ToughtState.End);
+					state = GameState.Play;
+					PlayerController.Instance.state = PlayerState.Moving;
+				} else {
+					ActionsManager.Instance.SendOnTalkText(talkerSprite, startDialog[currentIndex]);
+				}
+				currentIndex++;
+			} else if( state == GameState.End) {
+				if (currentIndex == endDialog.Count) {
+					ActionsManager.Instance.SendTalkStatusChanged(ToughtState.End);
+					state = GameState.Ui;
+				} else {
+					ActionsManager.Instance.SendOnTalkText(talkerSprite, endDialog[currentIndex]);
+				}
+				currentIndex++;
+			}
+		}
+	}
 }
 
 [Serializable]
@@ -65,5 +110,13 @@ public class PlayerInputSettings
 		return key == moveLeft || key == moveRight || key == moveDown || key == moveUp;
 	}
 
+}
+
+public enum GameState
+{
+	Start,
+	Play,
+	End,
+	Ui
 }
 

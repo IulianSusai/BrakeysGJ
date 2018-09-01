@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePages:
+  - {fileID: 114084879052384138, guid: 448a196b21879ab4686a31b0c078de92, type: 2}
   - {fileID: 114338063934712936, guid: 07a9c0ffcb2c53c4aa2f53f08fd18892, type: 2}
 --- !u!114 &114182924607842626
 MonoBehaviour:

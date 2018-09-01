@@ -38,7 +38,6 @@ public class Thoughts : MonoBehaviour {
 			if (Input.GetKeyDown(actionKey)) {
 				if (currentIndex == phrases.Count) {
 					ActionsManager.Instance.SendTalkStatusChanged(ToughtState.End);
-					Debug.Log("end talk");
 					return;
 				}
 				SendTalk();

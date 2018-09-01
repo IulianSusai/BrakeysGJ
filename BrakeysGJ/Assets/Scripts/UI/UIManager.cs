@@ -20,13 +20,13 @@ public class UIManager : MonoBehaviour {
 	private MenuPage currentPage;
 
 	private void Start() {
-		OpenPage(MenuPages.InGamePage);
+		OpenPage(MenuPages.MainPage);
 	}
 
 	public void OpenPage( MenuPages pageType ) {
 		if(currentPage != null) {
 			currentPage.Hide();
-			Destroy(currentPage);
+			Destroy(currentPage.gameObject);
 		}
 		currentPage = GetPage(pageType);
 		currentPage.Show();
@@ -43,6 +43,6 @@ public class UIManager : MonoBehaviour {
 
 public enum MenuPages
 {
-	InGamePage,
-	MenuPage
+	MainPage,
+	InGamePage
 }

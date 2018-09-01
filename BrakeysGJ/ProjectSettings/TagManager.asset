@@ -9,6 +9,8 @@ TagManager:
   - MovingPlatform
   - Enemy
   - Checkpoint
+  - Key
+  - EndArea
   layers:
   - Default
   - TransparentFX

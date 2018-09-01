@@ -96,7 +96,6 @@ public class FireflyCharacter : CharacterBase {
 
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		Debug.Log(collision.tag);
 		if (collision.CompareTag("Torch")) {
 			spawnPosition = collision.gameObject.transform.position;
 			Torch t = collision.gameObject.GetComponent<Torch>();
